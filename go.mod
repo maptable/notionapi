@@ -1,5 +1,7 @@
 module github.com/maptable/notionapi
 
+go 1.24
+
 require (
 	github.com/google/uuid v1.6.0
 	github.com/json-iterator/go v1.1.12
@@ -14,5 +16,3 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 )
-
-go 1.21
