@@ -100,5 +100,16 @@ func parseRecord(table string, r *Record) error {
 	if err := jsonit.Unmarshal(r.Value, &obj); err != nil {
 		return err
 	}
+	if b, ok := obj.(*Block); ok {
+		if b.ID == "" && b.RawJSON["value"] != nil {
+			// sometimes block is nested in "value" field
+			value := b.RawJSON["value"]
+			if bb, err := jsonit.Marshal(value); err == nil {
+				if err := jsonit.Unmarshal(bb, &obj); err != nil {
+					return err
+				}
+			}
+		}
+	}
 	return nil
 }
